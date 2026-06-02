@@ -13,12 +13,62 @@
         justify-content: center;
         align-items: center;
 
-        /* Nuit étoilée + parchemin sombre */
         background-color: #101827;
-
         color: #f3e9c8;
+
         font-family: "Courier New", Courier, monospace;
-        font-weight: bold;
+        font-weight: 300;
+
+        overflow: hidden;
+        position: relative;
+    }
+
+    /* 🌫️ MIST / BROUILLARD MAGIQUE */
+    .mist {
+        position: absolute;
+        width: 200%;
+        height: 200%;
+        top: -50%;
+        left: -50%;
+        pointer-events: none;
+        z-index: 0;
+
+        background: radial-gradient(circle at 30% 40%, rgba(255,255,255,0.06), transparent 60%),
+                    radial-gradient(circle at 70% 60%, rgba(255,255,255,0.04), transparent 65%),
+                    radial-gradient(circle at 50% 80%, rgba(255,255,255,0.03), transparent 70%);
+
+        animation: mistMove 20s infinite ease-in-out;
+        filter: blur(20px);
+    }
+
+    @keyframes mistMove {
+        0% { transform: translate(0,0); }
+        50% { transform: translate(30px,-20px); }
+        100% { transform: translate(0,0); }
+    }
+
+    /* ⭐ ÉTOILES */
+    .stars {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        pointer-events: none;
+    }
+
+    .star {
+        position: absolute;
+        width: 1px;   /* plus fin */
+        height: 1px;
+        background: white;
+        border-radius: 50%;
+        opacity: 0.3;
+        animation: twinkle 4s infinite ease-in-out;
+    }
+
+    @keyframes twinkle {
+        0%, 100% { opacity: 0.1; transform: scale(1); }
+        50% { opacity: 0.6; transform: scale(1.4); }
     }
 
     .container {
@@ -29,22 +79,26 @@
 
         height: 320px;
         width: 90%;
+
+        z-index: 1;
     }
 
     .symbols {
-        font-size: 1.6rem;
-        letter-spacing: 8px;
+        font-size: 1.2rem; /* ↓ plus fin */
+        letter-spacing: 10px;
 
-        /* Lueur dorée ancienne */
         color: #d4af37;
-        text-shadow: 0 0 10px #b8860b;
+        text-shadow: 0 0 6px rgba(184,134,11,0.5); /* plus léger */
+
+        font-weight: 200; /* très fin */
     }
 
     .message {
         text-align: center;
-        font-size: 1.3rem;
+        font-size: 1.2rem;
         line-height: 2;
         letter-spacing: 2px;
+        font-weight: 300;
     }
 
     #text {
@@ -54,6 +108,9 @@
 </head>
 
 <body>
+
+<div class="mist"></div>
+<div class="stars" id="stars"></div>
 
 <div class="container">
 
@@ -66,10 +123,9 @@
 </div>
 
 <script>
+    /* TYPEWRITER */
     const textElement = document.getElementById("text");
-
     const content = "THE QUEST ENDS.\nTHE LEGEND BEGINS.";
-
     let index = 0;
 
     function typeWriter() {
@@ -81,6 +137,23 @@
     }
 
     window.onload = typeWriter;
+
+    /* STARS */
+    const starsContainer = document.getElementById("stars");
+    const numberOfStars = 90;
+
+    for (let i = 0; i < numberOfStars; i++) {
+        const star = document.createElement("div");
+        star.classList.add("star");
+
+        star.style.top = Math.random() * 100 + "%";
+        star.style.left = Math.random() * 100 + "%";
+
+        star.style.animationDuration = (2 + Math.random() * 4) + "s";
+        star.style.opacity = Math.random() * 0.4;
+
+        starsContainer.appendChild(star);
+    }
 </script>
 
 </body>
