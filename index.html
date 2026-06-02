@@ -1,64 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Legend</title>
-    <style>
-        body {
-            background-color: #fdfcf0;
-            color: #4a4a4a;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            font-family: 'Courier New', Courier, monospace;
-            font-weight: bold;
-        }
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between; /* Force la symétrie */
-            height: 300px; /* Définit une zone fixe pour la symétrie */
-            width: 90%;
-        }
-        .message {
-            text-align: center;
-            font-size: 1.2rem;
-            line-height: 2;
-        }
-        .symbols {
-            font-size: 1.5rem;
-            letter-spacing: 10px;
-            text-shadow: 0 0 10px #d4af37, 0 0 20px #b8860b;
-        }
-        #text {
-            white-space: pre-wrap;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Legend</title>
+
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        /* Nuit étoilée + parchemin sombre */
+        background-color: #101827;
+
+        color: #f3e9c8;
+        font-family: "Courier New", Courier, monospace;
+        font-weight: bold;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+
+        height: 320px;
+        width: 90%;
+    }
+
+    .symbols {
+        font-size: 1.6rem;
+        letter-spacing: 8px;
+
+        /* Lueur dorée ancienne */
+        color: #d4af37;
+        text-shadow: 0 0 10px #b8860b;
+    }
+
+    .message {
+        text-align: center;
+        font-size: 1.3rem;
+        line-height: 2;
+        letter-spacing: 2px;
+    }
+
+    #text {
+        white-space: pre-wrap;
+    }
+</style>
 </head>
+
 <body>
-    <div class="container">
-        <div class="symbols">ᛉ ❤ ᚷ ❤ ᛉ</div>
-        <div class="message" id="text"></div>
-        <div class="symbols">ᛉ ❤ ᚷ ❤ ᛉ</div>
-    </div>
 
-    <script>
-        const textElement = document.getElementById('text');
-        const content = "THE QUEST ENDS.\nTHE LEGEND BEGINS.";
-        let index = 0;
+<div class="container">
 
-        function typeWriter() {
-            if (index < content.length) {
-                textElement.textContent += content.charAt(index);
-                index++;
-                setTimeout(typeWriter, 120);
-            }
+    <div class="symbols">ᛉ ♡ ᚷ ♡ ᛉ</div>
+
+    <div class="message" id="text"></div>
+
+    <div class="symbols">ᛉ ♡ ᚷ ♡ ᛉ</div>
+
+</div>
+
+<script>
+    const textElement = document.getElementById("text");
+
+    const content = "THE QUEST ENDS.\nTHE LEGEND BEGINS.";
+
+    let index = 0;
+
+    function typeWriter() {
+        if (index < content.length) {
+            textElement.textContent += content.charAt(index);
+            index++;
+            setTimeout(typeWriter, 110);
         }
-        window.onload = typeWriter;
-    </script>
+    }
+
+    window.onload = typeWriter;
+</script>
+
 </body>
 </html>
