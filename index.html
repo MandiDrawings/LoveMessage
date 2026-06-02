@@ -5,29 +5,54 @@
     <title>The Legend</title>
     <style>
         body {
-            background-color: #1a1a1a; 
-            color: #d4af37; 
+            background-color: #fdfcf0;
+            color: #4a4a4a;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
-            /* Utilisation d'une police machine à écrire moderne et très fine */
             font-family: 'Courier New', Courier, monospace;
-            font-weight: 300; 
+            font-weight: 300;
         }
         .message {
             text-align: center;
-            font-size: 1.5rem;
-            letter-spacing: 4px; /* Espacement plus large pour un côté épuré */
-            text-transform: uppercase;
+            font-size: 1.6rem;
+            line-height: 2;
+        }
+        .symbols {
+            font-size: 1.4rem;
+            letter-spacing: 12px;
+            /* Effet de glow subtil sur les symboles */
+            text-shadow: 0 0 8px rgba(184, 134, 11, 0.5);
+            margin-bottom: 20px;
+        }
+        #text {
+            overflow: hidden;
+            white-space: pre-wrap;
         }
     </style>
 </head>
 <body>
     <div class="message">
-        <p>The quest ends.</p>
-        <p>The legend begins.</p>
+        <div class="symbols">ᛉ ❤ ᚷ ❤ ᛉ</div>
+        <div id="text"></div>
+        <div class="symbols">ᛉ ❤ ᚷ ❤ ᛉ</div>
     </div>
+
+    <script>
+        const textElement = document.getElementById('text');
+        const content = "THE QUEST ENDS.\nTHE LEGEND BEGINS.";
+        let index = 0;
+
+        function typeWriter() {
+            if (index < content.length) {
+                textElement.textContent += content.charAt(index);
+                index++;
+                setTimeout(typeWriter, 100); // Vitesse d'écriture
+            }
+        }
+        typeWriter();
+    </script>
 </body>
 </html>
